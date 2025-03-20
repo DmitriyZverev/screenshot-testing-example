@@ -1,0 +1,15 @@
+{
+  "preset": "ts-jest",
+  "transform": {
+    "^.+\\\\.tsx?$": [
+      "ts-jest",
+      {
+        "tsconfig": "test/tsconfig.json"
+      }
+    ]
+  },
+  "globalSetup": "<rootDir>/test/jest/globalSetup.ts",
+  "globalTeardown": "<rootDir>/test/jest/globalTeardown.ts",
+  "setupFilesAfterEnv": ["<rootDir>/test/jest/setupJestImageSnapshot.ts"],
+  "testTimeout": 30000
+}

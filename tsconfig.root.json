@@ -1,0 +1,12 @@
+{
+  "extends": "@dmitriyzverev/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "lib": ["dom", "es2022"],
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "allowJs": true,
+    "esModuleInterop": true
+  }
+}

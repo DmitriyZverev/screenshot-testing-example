@@ -1,0 +1,50 @@
+{
+  "name": "@dmitriyzverev/screenshot-testing-example",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "eslint:fix": "npx eslint --no-error-on-unmatched-pattern --fix --ext .ts,.tsx,.js .",
+    "eslint:check": "npx eslint --no-error-on-unmatched-pattern --ext .ts,.tsx,.js .",
+    "prettier:fix": "npx prettier --write \"**/*.{ts,tsx,js,json,yml,md}\"",
+    "prettier:check": "npx prettier --check \"**/*.{ts,tsx,js,json,yml,md}\"",
+    "test": "npx jest --config .jestconfig.json",
+    "test:app:build": "node test/bin/build",
+    "test:env:setup": "node test/bin/env setup",
+    "test:env:teardown": "node test/bin/env teardown"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8",
+    "react-dom": "^16.8"
+  },
+  "devDependencies": {
+    "@dmitriyzverev/eslint-config": "3.0.1",
+    "@dmitriyzverev/prettier-config": "2.0.0",
+    "@dmitriyzverev/typescript-config": "1.1.1",
+    "@types/jest": "25.1.4",
+    "@types/jest-image-snapshot": "2.12.0",
+    "@types/node": "16.18.126",
+    "@types/puppeteer-core": "2.1.0",
+    "@types/react": "16.14.62",
+    "@types/react-dom": "16.9.25",
+    "@types/webpack-env": "1.15.2",
+    "dockerode": "3.2.0",
+    "eslint": "8.57.1",
+    "html-webpack-plugin": "4.0.4",
+    "jest": "29.7.0",
+    "jest-image-snapshot": "6.4.0",
+    "prettier": "2.8.8",
+    "puppeteer-core": "2.1.1",
+    "query-string": "6.12.1",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
+    "ts-jest": "29.2.6",
+    "ts-loader": "6.2.2",
+    "typescript": "5.8.2",
+    "webpack": "4.42.1",
+    "webpack-cli": "3.3.11",
+    "webpack-dev-server": "3.10.3"
+  }
+}
