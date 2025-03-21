@@ -64,9 +64,9 @@ export const connectBrowser: ConnectBrowser = (connectOptions) => {
         state.testPage = null;
     });
 
-    afterAll(() => {
-        if (state.browser && state.browser.isConnected()) {
-            state.browser.disconnect();
+    afterAll(async () => {
+        if (state.browser && state.browser.connected) {
+            return state.browser.disconnect();
         }
     });
 
@@ -77,7 +77,7 @@ export const connectBrowser: ConnectBrowser = (connectOptions) => {
                 state.testPage = await newPage();
             }
             if (filePath && caseName) {
-                await state.testPage.goto(caseUrl(filePath, caseName));
+                await state.testPage.goto(caseUrl(filePath, caseName), {waitUntil: 'networkidle0'});
             }
             return state.testPage;
         },

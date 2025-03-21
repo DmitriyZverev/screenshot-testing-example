@@ -4,6 +4,7 @@ import logger from '../../../logger';
 
 export interface Props {
     renderError: (error: any) => React.ReactNode;
+    children?: React.ReactNode;
 }
 
 export interface State {

@@ -6,15 +6,23 @@ _Example of cross-platform screenshot testing for React components_
 
 Environment requirements:
 
--   [Node.js](https://nodejs.org/) 16.x
+-   [Node.js](https://nodejs.org/)
 -   [Docker](https://docs.docker.com/install/)
 
 Tests are run using a test environment that is deployed in docker containers:
 
--   [browserless/chrome](https://hub.docker.com/r/browserless/chrome/) - Chrome
-    browser required for proper cross-platform screenshot testing.
+-   [browserless/chrome](https://docs.browserless.io/baas/docker/quickstart) -
+    Chrome browser required for proper cross-platform screenshot testing.
 -   [nginx](https://hub.docker.com/_/nginx) - Application with test cases. The
     browser will access this application when performing tests.
+
+Before running tests, define a
+[browser token](https://docs.browserless.io/baas/docker/quickstart#1-run-it-with-some-sensible-defaults)
+in the `test/.env.local` file as an environment variable:
+
+```text
+STE_BROWSER_TOKEN=<your-token>
+```
 
 To run tests use the command:
 

@@ -42,7 +42,8 @@ const makeEnvironment = (params) => {
                     env: [
                         // Set browser connection timeout to 10 minutes.
                         // That should be enough to complete all tests in ONE test file.
-                        'CONNECTION_TIMEOUT=600000',
+                        'TIMEOUT=600000',
+                        `TOKEN=${browser.token}`,
                     ],
                 }),
                 compiler.compile().then(() =>

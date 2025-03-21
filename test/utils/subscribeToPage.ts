@@ -15,10 +15,10 @@ const logMessage = (message: ConsoleMessage) => {
     if (message.type() === 'error') {
         action = 'error';
     }
-    if (message.type() === 'warning') {
+    if (message.type() === 'warn') {
         action = 'warn';
     }
-    return logger[action](`Browser console.${message.type()} ${location}:\n${message.text()}`);
+    logger[action](`Browser console.${message.type()} ${location}:\n${message.text()}`);
 };
 
 /**
@@ -27,7 +27,7 @@ const logMessage = (message: ConsoleMessage) => {
 export const subscribeToPage: SubscribeToPage = (page) => {
     page.on('console', (message) => {
         const messageType = message.type();
-        if (messageType === 'error' || messageType === 'warning') {
+        if (messageType === 'error' || messageType === 'warn') {
             logMessage(message);
         }
     });

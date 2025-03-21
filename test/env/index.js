@@ -12,6 +12,7 @@ const env = makeEnvironment({
         image: config.BROWSER_IMAGE,
         containerName: config.BROWSER_CONTAINER_NAME,
         port: config.BROWSER_PORT,
+        token: config.BROWSER_TOKEN,
     },
     server: {
         image: config.NGINX_IMAGE,

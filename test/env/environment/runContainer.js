@@ -14,6 +14,9 @@ module.exports = async (docker, params) => {
         Image: params.image,
         name: params.containerName,
         Env: params.env,
+        ExposedPorts: {
+            [params.publish[1]]: {},
+        },
         HostConfig: {
             Binds: params.binds,
             PortBindings: {

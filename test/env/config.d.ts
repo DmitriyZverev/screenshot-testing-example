@@ -4,6 +4,7 @@ interface Config {
     BROWSER_CONTAINER_NAME: string;
     BROWSER_PORT: string;
     BROWSER_WS_ENDPOINT: string;
+    BROWSER_TOKEN: string;
     NGINX_IMAGE: string;
     NGINX_CONTAINER_NAME: string;
     NGINX_PORT: string;

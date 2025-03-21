@@ -1,17 +1,22 @@
-const prefix = (str) => `scr-${str}`;
+require('dotenv').config({path: ['test/.env.local', 'test/.env']});
 
-exports.NETWORK_NAME = prefix('test-network');
+const prefix = (str) => `ste-${str}`;
 
-exports.BROWSER_IMAGE = 'browserless/chrome:1.28.0-puppeteer-2.1.1';
-exports.BROWSER_CONTAINER_NAME = prefix('test-browser');
-exports.BROWSER_PORT = '9337';
-exports.BROWSER_WS_ENDPOINT = process.env.SDMSE_TEST_BROWSER_WS_ENDPOINT
-    ? process.env.SDMSE_TEST_BROWSER_WS_ENDPOINT
-    : `ws://localhost:${exports.BROWSER_PORT}`;
+const env = (name) => {
+    const fullName = `STE_${name}`;
+    if (!(fullName in process.env)) {
+        throw new Error(`Environment variable "${fullName}" is not set`);
+    }
+    return process.env[fullName];
+};
 
-exports.NGINX_IMAGE = 'nginx:alpine';
-exports.NGINX_CONTAINER_NAME = prefix('test-nginx');
-exports.NGINX_PORT = '9338';
-exports.TEST_APP_ENDPOINT = process.env.SDMSE_TEST_APP_ENDPOINT
-    ? process.env.SDMSE_TEST_APP_ENDPOINT
-    : `http://${exports.NGINX_CONTAINER_NAME}:80`;
+exports.NETWORK_NAME = prefix('network');
+exports.BROWSER_IMAGE = env('BROWSER_IMAGE');
+exports.BROWSER_CONTAINER_NAME = prefix('browser');
+exports.BROWSER_PORT = env('BROWSER_PORT');
+exports.BROWSER_TOKEN = env('BROWSER_TOKEN');
+exports.BROWSER_WS_ENDPOINT = `ws://localhost:${exports.BROWSER_PORT}?token=${exports.BROWSER_TOKEN}`;
+exports.NGINX_IMAGE = env('NGINX_IMAGE');
+exports.NGINX_CONTAINER_NAME = prefix('nginx');
+exports.NGINX_PORT = env('NGINX_PORT');
+exports.TEST_APP_ENDPOINT = `http://${exports.NGINX_CONTAINER_NAME}:80`;

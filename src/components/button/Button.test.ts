@@ -14,17 +14,17 @@ describe('Button', () => {
         });
 
         test('Normal', async () => {
-            expect(await page.screenshot()).toMatchImageSnapshot();
+            expect(await page.screenshot({encoding: 'base64'})).toMatchImageSnapshot();
         });
 
         test('Hover', async () => {
             await page.hover('button');
-            expect(await page.screenshot()).toMatchImageSnapshot();
+            expect(await page.screenshot({encoding: 'base64'})).toMatchImageSnapshot();
         });
 
         test('Focus', async () => {
             await page.focus('button');
-            expect(await page.screenshot()).toMatchImageSnapshot();
+            expect(await page.screenshot({encoding: 'base64'})).toMatchImageSnapshot();
         });
     });
 });
