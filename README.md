@@ -1,56 +1,65 @@
-# Screenshot testing example
+# Screenshot Testing Example
 
-_Example of cross-platform screenshot testing for React components_
+_An example of cross-platform screenshot testing for React components._
 
-## Testing
+## Preparation
 
-Environment requirements:
+### Environment Requirements
 
--   [Node.js](https://nodejs.org/)
+-   [Node.js](https://nodejs.org/) >= 18.x + [NPM](https://docs.npmjs.com/)
 -   [Docker](https://docs.docker.com/install/)
 
-Tests are run using a test environment that is deployed in docker containers:
+Tests rely on services running in Docker containers:
 
--   [browserless/chrome](https://docs.browserless.io/baas/docker/quickstart) -
-    Chrome browser required for proper cross-platform screenshot testing.
--   [nginx](https://hub.docker.com/_/nginx) - Application with test cases. The
-    browser will access this application when performing tests.
+-   [browserless/chrome](https://docs.browserless.io/baas/docker/quickstart) - A
+    headless Chrome browser required for accurate cross-platform screenshot
+    testing.
+-   [nginx](https://hub.docker.com/_/nginx) - Serves the test application. The
+    browser will access this application during testing.
 
-Before running tests, define a
+### Setup
+
+Before running the tests, define a
 [browser token](https://docs.browserless.io/baas/docker/quickstart#1-run-it-with-some-sensible-defaults)
-in the `test/.env.local` file as an environment variable:
+as an environment variable in the `test/.env.local` file:
 
 ```text
 STE_BROWSER_TOKEN=<your-token>
 ```
 
-To run tests use the command:
+## Running Tests
+
+To execute the tests, run:
 
 ```bash
 npm test
 ```
 
-In this case, the test environment will be automatically:
+This will automatically:
 
--   Started before running the tests
--   Stopped and removed after running the tests
+1. **Start** the required environment (including Docker services) before running
+   the tests.
+2. **Execute** all tests on the host machine.
+3. **Stop and remove** the environment after the tests complete.
 
-Also, for debugging purposes, the test environment can be started/stopped
-separately from the tests:
+## Debugging
 
--   Start the environment:
+For debugging purposes, you can start and stop the test environment manually:
+
+-   **Start the environment (builds the test application and starts Docker
+    services):**
     ```bash
     npm run test:env:setup
     ```
-    After starting, the test application will be available at:
-    `http://localhost:9338`
--   Stop and remove the environment:
+    Once started, the test application will be available at:
+    **http://localhost:9338**
+-   **Stop and remove the environment:**
     ```bash
     npm run test:env:teardown
     ```
 
-If the test environment is already started "manually", you can run the tests
-bypassing the automatic steps of starting/stopping the environment:
+If the environment is already running, you can bypass the automatic  
+start/stop steps by running:
 
 ```bash
 npm test -- --no-env
@@ -58,8 +67,19 @@ npm test -- --no-env
 
 ## Commands
 
-To run commands, use `npm run <command>`:
+To run specific commands, use:
 
+```bash
+npm run <command>
+```
+
+-   `test` - Run all tests
 -   `test:app:build` - Build the application with test cases
--   `test:env:setup` - Start the test environment
--   `test:env:teardown` - Stop the test environment
+-   `test:env:setup` - Build the test application and start the test environment
+    (including Docker services)
+-   `test:env:teardown` - Stop and remove the test environment
+-   `eslint:fix` - Fix code quality issues
+-   `eslint:check` - Check (without changes) code quality issues
+-   `prettier:fix` - Format the code
+-   `prettier:check` - Check (without changes) if the code is formatted
+    correctly
